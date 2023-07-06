@@ -13,7 +13,7 @@ dotenv.config();
 // import Users from "./models/UserModel.js";
 // import Employees from "./models/EmployeeModel.js";
 // import Product from "./models/ProductModel.js";
-import Transaction from "./entity/TransactionEntity.js";
+// import Transaction from "./models/TransactionModel.js";
 const app = express();
 
 try {
@@ -22,7 +22,7 @@ try {
     // await Users.sync();
     // await Employees.sync();
     // await Product.sync();
-    await Transaction.sync()
+    // await Transaction.sync()
 } catch (error) {
     console.error(error);
 }

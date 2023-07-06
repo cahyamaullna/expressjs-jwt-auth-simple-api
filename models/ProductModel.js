@@ -1,19 +1,24 @@
-import { QueryTypes } from "sequelize";
+import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 
-export const getAllProductModel = async () => {
-  return await db.query("SELECT * FROM `products`", {
-    type: QueryTypes.SELECT,
-  });
-};
+const { DataTypes } = Sequelize;
 
-export const addProductModel = async (payload) => {
-  console.log(payload);
-  const sql = `
-    INSERT INTO products (name, price, available)
-    VALUES ('${payload.name}', '${payload.price}', '${payload.available}');
-  `;
-  return await db.query(sql, {
-    type: QueryTypes.INSERT,
-  });
-};
+const Product = db.define(
+  "products",
+  {
+    name: {
+      type: DataTypes.STRING,
+    },
+    price: {
+      type: DataTypes.STRING,
+    },
+    available: {
+      type: DataTypes.BOOLEAN,
+    },
+  },
+  {
+    freezeTableName: true,
+  }
+);
+
+export default Product;

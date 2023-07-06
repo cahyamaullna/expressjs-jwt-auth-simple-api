@@ -1,8 +1,8 @@
-import { addProductModel, getAllProductModel } from "../models/ProductModel.js";
+import { addProductService, getAllProductService } from "../service/ProductService.js";
 
 export const getProduct = async (req, res) => {
   try {
-    const result = await getAllProductModel();
+    const result = await getAllProductService();
     res.json({
       message: "GET all products success",
       data: result,
@@ -14,7 +14,7 @@ export const getProduct = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   try {
-    const result = await addProductModel(req.body);
+    const result = await addProductService(req.body);
     if (result) {
       return res.json({
         message: "Post all products success",
