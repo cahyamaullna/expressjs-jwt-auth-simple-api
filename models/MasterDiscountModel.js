@@ -3,22 +3,19 @@ import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
 
-const Product = db.define(
-  "products",
+const MasterDiscount = db.define(
+  "master_discount",
   {
     name: {
       type: DataTypes.STRING,
     },
-    price: {
-      type: DataTypes.INTEGER,
-    },
-    quantity: {
-      type: DataTypes.INTEGER,
-    },
+    discountPercent: {
+        type: DataTypes.INTEGER,
+    }
   },
   {
     freezeTableName: true,
   }
 );
 
-export default Product;
+export default MasterDiscount;

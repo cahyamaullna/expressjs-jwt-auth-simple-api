@@ -3,17 +3,11 @@ import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
 
-const Product = db.define(
-  "products",
+const MasterPaymentMethod = db.define(
+  "master_payment_method",
   {
     name: {
       type: DataTypes.STRING,
-    },
-    price: {
-      type: DataTypes.INTEGER,
-    },
-    quantity: {
-      type: DataTypes.INTEGER,
     },
   },
   {
@@ -21,4 +15,4 @@ const Product = db.define(
   }
 );
 
-export default Product;
+export default MasterPaymentMethod;

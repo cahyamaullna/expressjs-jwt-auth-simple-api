@@ -10,8 +10,8 @@ export const getAllProductService = async () => {
 export const addProductService = async (payload) => {
   console.log(payload);
   const sql = `
-      INSERT INTO products (name, price, available)
-      VALUES ('${payload.name}', '${payload.price}', '${payload.available}');
+      INSERT INTO products (name, price, quantity)
+      VALUES ('${payload.name}', '${payload.price}', '${payload.quantity}');
     `;
   return await db.query(sql, {
     type: QueryTypes.INSERT,
