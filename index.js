@@ -3,13 +3,13 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import db from "./config/Database.js";
-import AuthRoute from "./routes/AuthRoute.js";
-import EmployeesRoute from "./routes/EmployeesRoute.js";
-import ProductRoute from "./routes/ProductRoute.js";
-import TransactionRoute from "./routes/TransactionRoute.js";
-import MasterDiscountRoute from "./routes/MasterDiscount.js"
-import MasterPaymentMethod from "./routes/MasterPaymentMethod.js"
-import MasterRoleRoute from "./routes/MasterRoleRoute.js";
+import AuthRoute from "./module/AuthModule/routes/AuthRoute.js";
+import EmployeesRoute from "./module/EmployeeModule/routes/EmployeesRoute.js";
+import ProductRoute from "./module/ProductModule/routes/ProductRoute.js";
+import TransactionRoute from "./module/TransactionModule/routes/TransactionRoute.js";
+import MasterDiscountRoute from "./module/DiscountModule/routes/MasterDiscount.js"
+import MasterPaymentMethod from "./module/PaymentMethodModule/routes/MasterPaymentMethod.js"
+import MasterRoleRoute from "./module/RoleModule/routes/MasterRoleRoute.js";
 
 import { generateTable } from "./utils/GenerateTable.js";
 
