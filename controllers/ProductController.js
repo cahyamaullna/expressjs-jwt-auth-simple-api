@@ -4,7 +4,7 @@ import { response } from "../utils/ResponseUtils.js";
 export const getProduct = async (req, res) => {
   try {
     const products = await Product.findAll({
-      attributes: ["id", "name", "price", "quantity", "updatedAt"],
+      attributes: ["productId", "name", "price", "quantity", "updatedAt"],
     });
     response(200, products, "Get All Product Successfully", res);
   } catch (error) {
@@ -16,7 +16,7 @@ export const getProductById = async (req, res) => {
   try {
     const product = await Product.findOne({
       where: {
-        id: req.params.id,
+        productId: req.params.id,
       },
     });
     response(200, product, "Get Product by ID Successfully", res);
@@ -28,12 +28,8 @@ export const getProductById = async (req, res) => {
 export const addProduct = async (req, res) => {
   const { name, price, quantity } = req.body;
   try {
-    await Product.create({
-      name: name,
-      price: price,
-      quantity: quantity,
-    });
-    response(200, "", "Product Successfully Added", res);
+    await Product.bulkCreate(req.body);
+    response(201, "", "Product Successfully Added", res);
   } catch (error) {
     console.log(error.message);
   }
@@ -43,7 +39,7 @@ export const updateProduct = async (req, res) => {
   try {
     await Product.update(req.body, {
       where: {
-        id: req.params.id,
+        productId: req.params.id,
       },
     });
     response(200, "", "Product Successfully Updated", res);
@@ -56,7 +52,7 @@ export const deleteProduct = async (req, res) => {
   try {
     await Product.destroy({
       where: {
-        id: req.params.id,
+        productId: req.params.id,
       },
     });
     response(200, "", "Product " + req.params.id + " has been Deteled", res);

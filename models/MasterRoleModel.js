@@ -3,27 +3,23 @@ import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
 
-const MasterDiscount = db.define(
-  "master_discount",
+const MasterRole = db.define(
+  "master_role",
   {
-    discountId: {
+    roleId: {
       allowNull: false,
-      defaultValue: Sequelize.UUIDV4,
+      defaultValue: 101,
       primaryKey: true,
-      type: Sequelize.UUID,
+      type: DataTypes.INTEGER,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    discountPercent: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    }
   },
   {
     freezeTableName: true,
   }
 );
 
-export default MasterDiscount;
+export default MasterRole;

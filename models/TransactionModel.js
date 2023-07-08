@@ -1,32 +1,71 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Product from "./ProductModel.js";
+import Discount from "./MasterDiscountModel.js";
+import PaymentMethod from "./MasterPaymentMethodModel.js"
+import User from "./UserModel.js";
 
 const { DataTypes } = Sequelize;
 
-const Transaction = db.define('transaction', {
-    productId:{
-        type: DataTypes.INTEGER
+const Transaction = db.define(
+  "transaction",
+  {
+    transactionId: {
+      allowNull: false,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true,
+      type: Sequelize.UUID,
     },
-    discountId:{
-        type: DataTypes.INTEGER
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    finalPrice:{
-        type: DataTypes.INTEGER
+    productId: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    transactionDate:{
-        type: DataTypes.STRING
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    discountId: {
+      type: DataTypes.STRING,
+    },
+    finalPrice: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    transactionDate: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     paymentDate: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     transactionStatus: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: "UNPAID",
+      allowNull: false,
     },
     paymentMethodId: {
-        type: DataTypes.INTEGER
-    }
-},{
-    freezeTableName:true
-});
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    freezeTableName: true,
+  }
+);
+
+Transaction.hasOne(User, { foreignKey: "userId" });
+Transaction.belongsTo(User, { foreignKey: "userId" });
+
+Transaction.hasOne(Product, { foreignKey: "productId" });
+Transaction.belongsTo(Product, { foreignKey: "productId" });
+
+Transaction.hasOne(Discount, { foreignKey: "discountId" });
+Transaction.belongsTo(Discount, { foreignKey: "discountId" });
+
+Transaction.hasOne(PaymentMethod, { foreignKey: "paymentMethodId" });
+Transaction.belongsTo(PaymentMethod, { foreignKey: "paymentMethodId" });
 
 export default Transaction;

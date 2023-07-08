@@ -1,6 +1,6 @@
 import {Sequelize} from "sequelize";
 
-const db = new Sequelize('db_lat-jwt-auth','root','',{
+const db = new Sequelize('db_payment','root','',{
     host: "localhost",
     dialect: "mysql"
 });
